@@ -1,3 +1,8 @@
+
+<?php
+    echo "Hello World";
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -38,12 +43,23 @@
         </ol>
     </div>
 
+    <div class="zip-upload">
+        <h3>Upload your zip file here</h3>
+        <form method="post" class="zip-extract" enctype="multipart/form-data">
+            <input type="file" name="uploadFile" id="zip" style="color:white;">
+            <input type="submit" value="Upload" name="submit">
+        </form>
+    </div>
+
     <!-- DO NO REMOVE CODE STARTING HERE -->
     <div class="display-wrapper">
         <h2 style="margin-top:51px;">My images</h2>
         <div class="append-images-here">
             <p>No image found. Your extracted images should be here.</p>
             <!-- THE IMAGES SHOULD BE DISPLAYED INSIDE HERE -->
+            <div class="message">
+                <?php echo $msg; ?>
+            </div>
         </div>
     </div>
     <!-- DO NO REMOVE CODE UNTIL HERE -->

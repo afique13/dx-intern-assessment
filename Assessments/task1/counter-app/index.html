@@ -19,13 +19,13 @@
         </div>
         <div class='row d-flex justify-content-center flex-grow-1' style='padding: 100px'>
             <div class='col d-flex align-items-center justify-content-center'>
-                <button type='button' class='btn btn-primary btn-large' id='leftBtn' onclick='addValue()'> - </button>
+                <button type='button' class='btn btn-primary btn-large' id='leftBtn' onclick='minusValue()'> - </button>
             </div>
             <div class="col d-flex justify-content-center align-items-center">
                 <h1 id='countValue'></h1>
             </div>
             <div class="col d-flex align-items-center justify-content-center">
-                <button type='button' class='btn btn-primary btn-large' id='rightBtn' onclick='minusValue()'> + </button>
+                <button type='button' class='btn btn-primary btn-large' id='rightBtn' onclick='addValue()'> + </button>
             </div>
         </div>
         <div class = 'row d-flex justify-content-center'>
@@ -36,29 +36,32 @@
     </div>
 </body>
 <script>
-    const counterValue = 0
+    counterValue = 0
     window.onload = function(){
         document.getElementById("countValue").innerHTML = counterValue;
     }
 
     function addValue(){
         let addBtn = document.getElementById("rightBtn").innerHTML
-        if(counterValue % 3){
-            counterValue += 5
-        }else{
-            counterValue++
-        }
+
+        counterValue+=1;
+        
         document.getElementById("countValue").innerHTML = counterValue;
     }
 
     function minusValue(){
         let minusBtn = document.getElementById("leftBtn").innerHTML
-        counterValue--
+
+        if(counterValue>0){
+            counterValue--
+        }
+
         document.getElementById("countValue").innerHTML = counterValue;
     }
 
     function reset(){
         counterValue = 0
+        document.getElementById("countValue").innerHTML = counterValue;
     }
 
 </script>

@@ -32,3 +32,8 @@ b.yellow {
 .display-wrapper {
     padding: 10px;
 }
+
+form.zip-extract {
+    background-color: transparent;
+    border: none;
+}
