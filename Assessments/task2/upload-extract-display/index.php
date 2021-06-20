@@ -1,6 +1,36 @@
 
 <?php
-    echo "Hello World";
+    $msg = "";
+
+    if (isset($_POST['submit'])) {
+        $fileName = $_FILES['uploadFile']['name'];
+        $fileNameArr = explode('.', $fileName);
+
+        if ($fileNameArr[count($fileNameArr)-1] == 'zip') {
+            $fineName = $fileNameArr[0];
+            $zip = new ZipArchive();
+
+            if ($zip -> open($_FILES['uploadFile']['tmp_name']) === TRUE) {
+                $path = "upload/$fineName/";
+                $zip -> extractTo($path);
+                $zip -> close();
+                $files = scandir($path);
+                
+                foreach ($files as $file) {
+                    $src = $path."$file";
+                    if (strlen($file) > 4) {
+                        $msg .= "<div class='col-sm'><img style='width:100%;' src='$src'></div>";
+                    }
+                }
+            } else {
+                $msg = 'Error';
+            }
+            
+        } else {
+            $msg = 'Please select zip file';
+        }
+        
+    }
 ?>
 
 <!doctype html>
@@ -54,10 +84,10 @@
     <!-- DO NO REMOVE CODE STARTING HERE -->
     <div class="display-wrapper">
         <h2 style="margin-top:51px;">My images</h2>
-        <div class="append-images-here">
+        <div class="append-images-here container">
             <p>No image found. Your extracted images should be here.</p>
             <!-- THE IMAGES SHOULD BE DISPLAYED INSIDE HERE -->
-            <div class="message">
+            <div class="row">
                 <?php echo $msg; ?>
             </div>
         </div>
